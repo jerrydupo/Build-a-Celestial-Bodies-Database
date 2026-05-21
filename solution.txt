@@ -1,0 +1,156 @@
+------------------------------------------------------------
+1. Create Database and connect to it
+------------------------------------------------------------
+psql --username=freecodecamp --dbname=postgres;
+
+CREATE DATABASE universe;
+
+\c universe
+
+------------------------------------------------------------
+2. Create tables as required conditions
+------------------------------------------------------------
+CREATE TABLE galaxy (
+    galaxy_id SERIAL NOT NULL,
+	star_id INTEGER  NOT NULL,
+    name VARCHAR(60) UNIQUE NOT NULL,
+    age_in_millions_of_years NUMERIC,
+    discovery_year INTEGER,
+    distance_from_earth INTEGER,
+    has_life BOOLEAN,
+    is_spherical BOOLEAN,
+    description TEXT
+);
+
+CREATE TABLE moon (
+    moon_id SERIAL NOT NULL,
+	planet_id INTEGER NOT NULL,
+    name VARCHAR(60) UNIQUE NOT NULL,
+    age_in_millions_of_years NUMERIC,
+    discovery_year INTEGER,
+    distance_from_earth INTEGER,
+    has_life BOOLEAN,
+    is_spherical BOOLEAN,
+    description TEXT
+);
+
+CREATE TABLE planet (
+    planet_id SERIAL NOT NULL,
+	star_id INTEGER  NOT NULL,
+    moon_id INTEGER  NOT NULL,
+    name VARCHAR(60) UNIQUE NOT NULL,
+    age_in_millions_of_years NUMERIC,
+    discovery_year INTEGER,
+    distance_from_earth INTEGER,
+    has_life BOOLEAN,
+    is_spherical BOOLEAN,
+    description TEXT
+);
+
+CREATE TABLE star (
+    star_id SERIAL NOT NULL,
+	galaxy_id INTEGER NOT NULL,
+    planet_id INTEGER NOT NULL,
+    name VARCHAR(60) UNIQUE NOT NULL,
+    age_in_millions_of_years NUMERIC,
+    discovery_year INTEGER,
+    distance_from_earth INTEGER,
+    has_life BOOLEAN,
+    is_spherical BOOLEAN,
+    description TEXT
+);
+
+CREATE TABLE more_info (
+    more_info_id SERIAL NOT NULL,
+    object_id INTEGER,
+    name VARCHAR(60) UNIQUE NOT NULL,
+    description TEXT
+);
+
+------------------------------------------------------------
+3. Fill the tables as required data conditions
+------------------------------------------------------------
+INSERT INTO galaxy
+(star_id, name, age_in_millions_of_years, discovery_year, distance_from_earth, has_life, is_spherical, description) VALUES 
+(1, 'galaxy1', 100.1, 1900, 10, 'true', 'true', 'sample description'),
+(2, 'galaxy2', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(3, 'galaxy3', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(4, 'galaxy4', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(5, 'galaxy5', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6, 'galaxy6', 100.1, 1900, 10, 'false', 'true', 'sample description');
+
+INSERT INTO moon 
+(planet_id, name, age_in_millions_of_years, discovery_year, distance_from_earth, has_life, is_spherical, description) VALUES 
+(1, 'moon1', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(2, 'moon2', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(3, 'moon3', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(4, 'moon4', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(5, 'moon5', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6, 'moon6', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(7, 'moon7', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(8, 'moon8', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(9, 'moon9', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(10, 'moon10', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(11, 'moon11', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon12', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon13', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon14', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon15', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon16', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon17', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon18', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon19', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(12, 'moon20', 100.1, 1900, 10, 'false', 'true', 'sample description');
+
+INSERT INTO planet 
+(star_id, moon_id, name, age_in_millions_of_years, discovery_year, distance_from_earth, has_life, is_spherical, description) VALUES 
+(1,  1, 'planet1', 100.1, 1900, 10, 'true', 'true', 'sample description'),
+(2,  2, 'planet2', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(3,  3, 'planet3', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(4,  4, 'planet4', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(5,  5, 'planet5', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6,  6, 'planet6', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6,  7, 'planet7', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6,  8, 'planet8', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6,  9, 'planet9', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6, 10, 'planet10', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6, 11, 'planet11', 100.1, 1900, 10, 'false', 'true', 'sample description'),
+(6, 12, 'planet12', 100.1, 1900, 10, 'false', 'true', 'sample description');
+
+INSERT INTO star 
+(galaxy_id, planet_id, name, age_in_millions_of_years, discovery_year, distance_from_earth, has_life, is_spherical, description) VALUES 
+(1, 1, 'star1', 100.1, 1900, 10, 'false', 'false', 'sample description'),
+(2, 2, 'star2', 100.1, 1900, 10, 'false', 'false', 'sample description'),
+(3, 3, 'star3', 100.1, 1900, 10, 'false', 'false', 'sample description'),
+(4, 4, 'star4', 100.1, 1900, 10, 'false', 'false', 'sample description'),
+(5, 5, 'star5', 100.1, 1900, 10, 'false', 'false', 'sample description'),
+(6, 6, 'star6', 100.1, 1900, 10, 'false', 'false', 'sample description');
+
+INSERT INTO more_info 
+(var_id, name, description) VALUES 
+(1, 'info1', 'sample description'),
+(2, 'info2', 'sample description'),
+(3, 'info3', 'sample description'),
+(4, 'info4', 'sample description'),
+(5, 'info5', 'sample description');
+
+------------------------------------------------------------
+4. Primary Key and Foreign Key assignment
+------------------------------------------------------------
+ALTER TABLE galaxy    ADD PRIMARY KEY (galaxy_id)
+ALTER TABLE star      ADD PRIMARY KEY (star_id)
+ALTER TABLE planet    ADD PRIMARY KEY (planet_id)
+ALTER TABLE moon      ADD PRIMARY KEY (moon_id)
+ALTER TABLE more_info ADD PRIMARY KEY (more_info_id)
+
+ALTER TABLE galaxy ADD FOREIGN KEY (star_id)   REFERENCES star   (star_id)
+ALTER TABLE star   ADD FOREIGN KEY (galaxy_id) REFERENCES galaxy (galaxy_id)
+ALTER TABLE star   ADD FOREIGN KEY (planet_id) REFERENCES planet (planet_id)
+ALTER TABLE planet ADD FOREIGN KEY (star_id)   REFERENCES star   (star_id)
+ALTER TABLE planet ADD FOREIGN KEY (moon_id)   REFERENCES moon   (moon_id)
+ALTER TABLE moon   ADD FOREIGN KEY (planet_id) REFERENCES planet (planet_id)
+
+------------------------------------------------------------
+5. Compact sql db queries into universe.sql file
+------------------------------------------------------------
+pg_dump -cC --inserts -U freecodecamp universe > universe.sql
